@@ -1,0 +1,188 @@
+<!--
+Todos
+- drag leave sometimes doesnt work
+
+-->
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mastermind</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="js/mastermind.js"></script>
+</head>
+
+<body>
+
+<div id="boardContainer">
+
+  <table id="boardDivision">
+	<tr>
+		<td width="22%" height="91%">
+		<div id="feedbackContainer">
+		  <table width="100%" height="100%" border="1">
+		    <tbody>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+	          </tr>
+		      <tr>
+		        <td>
+                <table class="round0">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+            </td>
+	          </tr>
+	        </tbody>
+	      </table>
+
+
+		</div>
+		</td>
+		<td width="78%" height="91%">
+		<div id="guessContainer">
+    <table height="100%" width="100%">
+      <tbody>
+        <tr>
+          <td><div class="position" id="45"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="46"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="47"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="48"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="41"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="42"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="43"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="44"><img src="images/hole.png"/></div></td>
+        </tr>
+		<tr>
+          <td><div class="position" id="37"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="38"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="39"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="40"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="33"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="34"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="35"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="36"><img src="images/hole.png"/></div></td>
+        </tr>
+		<tr>
+          <td><div class="position" id="29"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="30"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="31"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="32"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="25"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="26"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="27"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="28"><img src="images/hole.png"/></div></td>
+        </tr>
+		<tr>
+          <td><div class="position" id="21"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="22"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="23"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="24"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="17"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="18"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="19"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="20"><img src="images/hole.png"/></div></td>
+        </tr>
+	    <tr>
+          <td><div class="position" id="13"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="14"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="15"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="16"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="9"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="10"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="11"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="12"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="4"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="5"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="6"><img src="images/hole.png"/></div></td>
+          <td><div class="position" id="7"><img src="images/hole.png"/></div></td>
+        </tr>
+        <tr>
+          <td><div class="position" id="0"></div></td>
+          <td><div class="position" id="1"></div></td>
+          <td><div class="position" id="2"></div></td>
+          <td><div class="position" id="3"></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" width="100%" height="9%">
+		<div id="colorsContainer"><table width="100%" height="100%">
+  <tbody>
+    <tr>
+	  <td></td>
+      <td><img src="images/purple.png" class="color" id="purple"/></td>
+      <td><img src="images/blue.png" class="color" id="blue"/></td>
+      <td><img src="images/green.png" class="color" id="green"/></td>
+      <td><img src="images/yellow.png" class="color" id="yellow"/></td>
+      <td><img src="images/orange.png" class="color" id="orange"/></td>
+      <td><img src="images/red.png" class="color" id="red"/></td>
+      <td><div id='submitButtonContainer' class="submitButton">&#11014;</div></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+		</td>
+	</tr>
+</table>
+	</div>
+</body>
+</html>
