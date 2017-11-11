@@ -171,7 +171,7 @@ function generateFeedback(){
 			$('.round'+round+' #f'+(i+rightPlace)).css('backgroundImage',"url('../images/rightcolor.png')");
 		}
 	if (rightPlace == 4){
-		$('.completed').fadeIn(400);
+		$('.completed').fadeIn(400);		
 		$('#replay').click(function() {
  location.reload();
 });
