@@ -164,14 +164,14 @@ function generateFeedback(){
 		console.log('2scode: ' + tempScode);
 		//add right places
 		for (let i = 1; i < (rightPlace+1); i++){
-			$('.round'+round+' #f'+i).css('backgroundImage',"url('../images/rightPlace.png')");
+			$('.round'+round+' #f'+i).css('backgroundImage',"url('../images/rightplace.png')");
 		}
 		//add right colors
 		for (let i = 1; i < rightColor+1; i++){
-			$('.round'+round+' #f'+(i+rightPlace)).css('backgroundImage',"url('../images/rightColor.png')");
+			$('.round'+round+' #f'+(i+rightPlace)).css('backgroundImage',"url('../images/rightcolor.png')");
 		}
 	if (rightPlace == 4){
-		$('.completed').fadeIn(400);		
+		$('.completed').fadeIn(400);
 		$('#replay').click(function() {
  location.reload();
 });
