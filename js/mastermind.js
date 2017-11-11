@@ -4,6 +4,7 @@
 
 function dragDropFunctionality(){
 	//add drag and drop to color pallete
+	console.log('drag wurde aufgerugen');
 	let colors = document.getElementsByClassName("color");
 	for (let i = 0; i < colors.length; i++){
 		colors[i].addEventListener('dragstart', startdrag, false);
@@ -13,7 +14,14 @@ function dragDropFunctionality(){
 	//add drop enter to positions of current round
 	for (let i = 0; i < 4; i++) {
 		let id = 4*round + i;
+		//clone all elements so they will have a new listener in the next round
+		if (round > 0){
+		let oldposition = document.getElementById(id-4);
+    	let positionClone = oldposition.cloneNode(true);
+		oldposition.parentNode.replaceChild(positionClone, oldposition);
+		}
 		let position = document.getElementById(id);
+		console.log('listener to: ' + id);
 		position.addEventListener('dragover', elementover, false);
 		position.addEventListener('dragenter', enterdrag, false);
 		position.addEventListener('dragleave', leavedrag, false);
@@ -50,6 +58,7 @@ function elementover(e){
 
 
 function enterdrag(e){
+	console.log('drag was entered');
 	this.style.backgroundImage = 'url(../images/ondrag.png)';
 }
 
@@ -66,8 +75,11 @@ function leavedrag(e){
 
 function handleDrop(e){
 	e.preventDefault();
-	board[round][this.getAttribute('id')] = e.dataTransfer.getData('text/plain');
-	let url = 'url(../images/' + e.dataTransfer.getData('text/plain') + '.png)'
+	console.log('datentransfer: ' + e.dataTransfer.getData('text/plain'));
+	//console.log('this elements id' + this.Element.getAttribute('id'));
+	console.log(round);
+	board[round][(this.getAttribute('id')%4)] = e.dataTransfer.getData('text/plain');
+	let url = 'url(../images/' + e.dataTransfer.getData('text/plain') + '.png)';
 	this.style.backgroundImage = url;
 	submit();
 }
@@ -76,11 +88,13 @@ function handleDrop(e){
 function submit() {
 	let allGuessesSet = true;
 	for (let i = 0; i < 4; i++) {
+		console.log('type of board: ' + typeof board[round][i]);
 		if (typeof board[round][i] === 'undefined'){
 			allGuessesSet = false;
 		}
 	}
 	if (allGuessesSet) {
+		console.log('All guesses were set');
 		$('#submitButtonContainer').show('slide', {direction: 'right'}, 1000);
 		$('.submitButton').off().click(finishRound); ///wird je aufruf der if-schleife nochmal aufgerufen
 	}
@@ -89,6 +103,9 @@ function submit() {
 function finishRound(){
 	$('#submitButtonContainer').hide('slide', {direction: 'right'}, 1000);
 	generateFeedback();
+	round++;
+	console.log('main should ne stated');
+	dragDropFunctionality();
 }
 
 
@@ -105,7 +122,7 @@ function generateScode(){
 	let scode = new Array(4);
 	let availableColors = ['purple','blue','green','yellow','orange','red'];
 	for (let i = 0; i < 4; i++){
-		scode[i] = availableColors[(Math.floor(Math.random() * 5))];
+		scode[i] = availableColors[(Math.floor(Math.random() * 6))];
 		console.log(scode[i]);
 	}
 	return scode;
@@ -118,57 +135,54 @@ function generateFeedback(){
 	//create temp arrays to compare witheach other
 	let tempScode = scode.slice(0);
 	let currentRow = new Array(4);
-	for (let i = 4; i > 0; i--){
+	for (let i = 3; i >= 0; i--){
 		//make copy of current row
 		currentRow[i] = board[round][i];
 		//check if right positions are given
+	}
+	for (let i = 3; i >= 0; i--){
 		if (currentRow[i] == tempScode[i]){
 			rightPlace++;
-			currentRow.slice(i,1);
-			tempScode.slice(i,1);
+			currentRow.splice(i,1);
+			tempScode.splice(i,1);
 		}
 	}
+	console.log('row: ' + currentRow);
+	console.log('scode: ' + tempScode);
 		// check if right colors are given
-		for (let i = 0; i < currentRow.length; i++){
+		for (let i = currentRow.length-1; i >= 0; i--){
 			for (let m = 0; m < tempScode.length; m++){
 				if (currentRow[i] == tempScode[m]){
-					tempScode.slice(i,1);
+					tempScode.splice(m,1);
 					rightColor++;
 					break;
 				}
 			}
 		}
-		console.log('RP: ' + rightPlace + 'RC: ' + rightColor);
+//to be deleted
+		console.log('2row: ' + currentRow);
+		console.log('2scode: ' + tempScode);
+		//add right places
+		for (let i = 1; i < (rightPlace+1); i++){
+			$('.round'+round+' #f'+i).css('backgroundImage',"url('../images/rightPlace.png')");
+		}
+		//add right colors
+		for (let i = 1; i < rightColor+1; i++){
+			$('.round'+round+' #f'+(i+rightPlace)).css('backgroundImage',"url('../images/rightColor.png')");
+		}
+	if (rightPlace == 4){
+		$('.completed').fadeIn(400);		
+		$('#replay').click(function() {
+ location.reload();
+});
+	}
 
-
-/*
-
-    # Check if right colors are on the board
-    for color_given in row_given:
-        m = 0
-        for color_scode in row_scode:
-            if color_scode == color_given:
-                right_color += 1
-                row_scode.pop(m)
-                break
-            m += 1
-
-    # Create feedback string
-    feedback = []
-    for i in range(right_place):
-        feedback.append("black")
-    for i in range(right_color):
-        feedback.append("white")
-
-    # Check whether final solution was found
-    return feedback
-------
-'''
-*/
 }
 
 ////////Code
 function main(){
+console.log('main wurde aufgerugen');
+window.removeEventListener('load', dragDropFunctionality, false);
 window.addEventListener('load', dragDropFunctionality, false);
 }
 

@@ -1,0 +1,15 @@
+Todos
+- fuction score calculator
+- pegs random print order
+- function create secret solution
+- compare solution and last row 
+
+
+
+
+
+
+later:
+- top scores
+- multiplayer (double player mode) time as a factor
+- nice interface
